@@ -1,8 +1,11 @@
 package com.example.krasimiryankov.libraryapp.data.model
 
+import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import com.example.krasimiryankov.libraryapp.data.BookConst
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = BookConst.TABLE_BOOKS)
 data class BookEntry(
         @PrimaryKey(autoGenerate = true)
         @field:SerializedName("id") val id: Long,

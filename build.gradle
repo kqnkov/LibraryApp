@@ -35,4 +35,5 @@ ext {
     pagingVersion = "1.0.0-beta1"
     retrofitVersion = "2.3.0"
     okhttpLoggingInterceptorVersion = "3.9.0"
+    dagger2_version = '2.16'
 }
