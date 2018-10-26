@@ -1,4 +1,4 @@
-package com.example.krasimiryankov.libraryapp.data.model
+package com.example.krasimiryankov.libraryapp.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
