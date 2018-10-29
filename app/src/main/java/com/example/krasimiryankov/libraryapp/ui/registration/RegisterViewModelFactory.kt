@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.krasimiryankov.libraryapp.ui.books
+package com.example.krasimiryankov.libraryapp.ui.registration
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -23,12 +23,12 @@ import com.example.krasimiryankov.libraryapp.data.LibraryRepository
 /**
  * Factory for ViewModels
  */
-class ViewModelFactory(private val repository: LibraryRepository) : ViewModelProvider.Factory {
+class RegisterViewModelFactory(private val repository: LibraryRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(BooksActivityViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(RegistrationViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return BooksActivityViewModel(repository) as T
+            return RegistrationViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

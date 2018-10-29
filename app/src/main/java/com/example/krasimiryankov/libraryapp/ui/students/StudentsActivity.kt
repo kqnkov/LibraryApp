@@ -11,17 +11,16 @@ import kotlinx.android.synthetic.main.activity_students.*
 
 class StudentsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityStudentsBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_students)
-        btn_register.setOnClickListener { _ ->
+        val binding: ActivityStudentsBinding = DataBindingUtil.setContentView(this, R.layout.activity_students)
+
+        binding.btnRegister.setOnClickListener { _ ->
             loadRegistration()
         }
     }
 
-    private fun loadRegistration(): Unit {
+    private fun loadRegistration() {
         val intent = Intent(this, RegistrationActivity::class.java)
         startActivity(intent)
     }

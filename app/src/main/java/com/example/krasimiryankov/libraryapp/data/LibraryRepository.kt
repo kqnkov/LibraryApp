@@ -1,12 +1,14 @@
 package com.example.krasimiryankov.libraryapp.data
 
+import android.arch.lifecycle.LiveData
 import android.arch.paging.LivePagedListBuilder
 import com.example.krasimiryankov.libraryapp.data.database.LibraryLocalCache
 import com.example.krasimiryankov.libraryapp.data.network.BookApi
 import com.example.krasimiryankov.libraryapp.data.paging.BookBoundaryCallback
 import com.example.krasimiryankov.libraryapp.model.BooksResult
+import com.example.krasimiryankov.libraryapp.model.Student
 
-class BookRepository(
+class LibraryRepository(
         private val cache: LibraryLocalCache,
         private val service: BookApi
 ) {
@@ -17,5 +19,13 @@ class BookRepository(
         val data = LivePagedListBuilder(dataSourceFactory, 20).setBoundaryCallback(boundaryCallback).build()
 
         return BooksResult(data, errors)
+    }
+
+    fun addStudent(student: Student) {
+        cache.insertStudent(student)
+    }
+
+    fun getStudents(): LiveData<List<Student>> {
+        return cache.getAllStudents()
     }
 }

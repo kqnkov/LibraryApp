@@ -1,5 +1,7 @@
 package com.example.krasimiryankov.libraryapp.data.database
 
+import android.arch.lifecycle.LiveData
+import android.arch.paging.DataSource
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -16,5 +18,8 @@ interface StudentDao {
 
     @Query("SELECT * FROM " + BookConst.TABLE_STUDENT + " WHERE id == :id")
     fun getStudentById(id: Long): Student
+
+    @Query("SELECT * FROM " + BookConst.TABLE_STUDENT)
+    fun getAllStudents(): LiveData<List<Student>>
 
 }

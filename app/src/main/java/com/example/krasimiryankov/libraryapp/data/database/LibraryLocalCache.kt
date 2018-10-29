@@ -1,5 +1,6 @@
 package com.example.krasimiryankov.libraryapp.data.database
 
+import android.arch.lifecycle.LiveData
 import android.arch.paging.DataSource
 import com.example.krasimiryankov.libraryapp.model.BookEntry
 import com.example.krasimiryankov.libraryapp.model.Student
@@ -17,14 +18,17 @@ class LibraryLocalCache(
         }
     }
 
-    fun insertStudent(student: Student, insertFinished: () -> Unit) {
+    fun insertStudent(student: Student) {
         ioExecutor.execute {
             studentDao.insertStudent(student)
-            insertFinished()
         }
     }
 
     fun getAllBooks(): DataSource.Factory<Int, BookEntry> {
         return bookDao.getAll()
+    }
+
+    fun getAllStudents(): LiveData<List<Student>> {
+        return studentDao.getAllStudents()
     }
 }
