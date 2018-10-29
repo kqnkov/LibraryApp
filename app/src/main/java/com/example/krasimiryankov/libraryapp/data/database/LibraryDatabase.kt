@@ -6,7 +6,6 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.example.krasimiryankov.libraryapp.data.BookConst
 import com.example.krasimiryankov.libraryapp.model.BookEntry
-import com.example.krasimiryankov.libraryapp.model.Borrow
 import com.example.krasimiryankov.libraryapp.model.Student
 
 @Database(

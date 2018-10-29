@@ -1,4 +1,4 @@
-package com.example.krasimiryankov.libraryapp.ui
+package com.example.krasimiryankov.libraryapp.ui.books
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -30,7 +30,7 @@ class BookViewHolder(view: View): RecyclerView.ViewHolder(view){
 
 
     companion object {
-        fun create(parent: ViewGroup): BookViewHolder{
+        fun create(parent: ViewGroup): BookViewHolder {
            val view = LayoutInflater.from(parent.context).inflate(R.layout.row_book, parent, false)
             return BookViewHolder(view)
         }

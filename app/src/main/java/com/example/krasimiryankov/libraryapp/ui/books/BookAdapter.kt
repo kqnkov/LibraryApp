@@ -1,4 +1,4 @@
-package com.example.krasimiryankov.libraryapp.ui
+package com.example.krasimiryankov.libraryapp.ui.books
 
 import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil

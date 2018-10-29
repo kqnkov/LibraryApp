@@ -1,4 +1,4 @@
-package com.example.krasimiryankov.libraryapp.ui
+package com.example.krasimiryankov.libraryapp.ui.books
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.example.krasimiryankov.libraryapp.data.BookRepository
 import com.example.krasimiryankov.libraryapp.model.BookEntry
 import com.example.krasimiryankov.libraryapp.model.BooksResult
 
-class MainActivityViewModel(private val repository: BookRepository): ViewModel(){
+class BooksActivityViewModel(private val repository: BookRepository): ViewModel(){
 
     private val booksLiveData = MutableLiveData<String>()
     private val booksResult: LiveData<BooksResult> = Transformations.map(booksLiveData, {repository.getBooks(it)})

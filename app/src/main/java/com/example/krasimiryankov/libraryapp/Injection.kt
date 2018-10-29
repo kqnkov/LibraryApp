@@ -6,7 +6,7 @@ import com.example.krasimiryankov.libraryapp.data.BookRepository
 import com.example.krasimiryankov.libraryapp.data.database.LibraryDatabase
 import com.example.krasimiryankov.libraryapp.data.database.LibraryLocalCache
 import com.example.krasimiryankov.libraryapp.data.network.BookApi
-import com.example.krasimiryankov.libraryapp.ui.ViewModelFactory
+import com.example.krasimiryankov.libraryapp.ui.books.ViewModelFactory
 
 import java.util.concurrent.Executors
 

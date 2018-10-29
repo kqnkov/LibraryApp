@@ -1,10 +1,9 @@
-package com.example.krasimiryankov.libraryapp.ui
+package com.example.krasimiryankov.libraryapp.ui.books
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.arch.paging.PagedList
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
@@ -12,9 +11,9 @@ import com.example.krasimiryankov.libraryapp.Injection
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.model.BookEntry
 
-class MainActivity : AppCompatActivity() {
+class BooksActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModel: BooksActivityViewModel
     private val adapter = BookAdapter()
     private lateinit var list: RecyclerView
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         list = findViewById(R.id.list)
 
-        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this)).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this)).get(BooksActivityViewModel::class.java)
         list.adapter = adapter
 
         viewModel.books.observe(this, Observer<PagedList<BookEntry>> {

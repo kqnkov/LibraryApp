@@ -36,4 +36,5 @@ ext {
     retrofitVersion = "2.3.0"
     okhttpLoggingInterceptorVersion = "3.9.0"
     dagger2_version = '2.16'
+    ext.stetho_version = "1.5.0"
 }
