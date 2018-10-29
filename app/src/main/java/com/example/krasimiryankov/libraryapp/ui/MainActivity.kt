@@ -1,4 +1,4 @@
-package com.example.krasimiryankov.libraryapp
+package com.example.krasimiryankov.libraryapp.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -8,9 +8,9 @@ import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import com.example.krasimiryankov.libraryapp.Injection
+import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.model.BookEntry
-import com.example.krasimiryankov.libraryapp.ui.BookAdapter
-import com.example.krasimiryankov.libraryapp.ui.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
     private val adapter = BookAdapter()
     private lateinit var list: RecyclerView
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         list = findViewById(R.id.list)
 
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this)).get(MainActivityViewModel::class.java)
         list.adapter = adapter
 
         viewModel.books.observe(this, Observer<PagedList<BookEntry>> {
@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.searchForTitle("java")
-        adapter.submitList(null)
     }
 
 }

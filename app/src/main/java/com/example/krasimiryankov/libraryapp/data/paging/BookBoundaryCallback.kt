@@ -30,7 +30,7 @@ class BookBoundaryCallback(
     private fun updateRecentData(query: String) {
         getBooksFromApi(service, query, lastRequestedPage, { books ->
             cache.insertBooks(books, {
-                lastRequestedPage
+                lastRequestedPage++
             })
         }, { error ->
             _errors.postValue(error)

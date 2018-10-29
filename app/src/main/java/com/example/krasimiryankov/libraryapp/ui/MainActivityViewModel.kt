@@ -21,5 +21,4 @@ class MainActivityViewModel(private val repository: BookRepository): ViewModel()
         booksLiveData.postValue(query)
     }
 
-    fun lastQueryValue(): String? = booksLiveData.value
 }

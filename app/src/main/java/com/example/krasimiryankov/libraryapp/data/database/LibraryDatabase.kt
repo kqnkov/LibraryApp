@@ -11,12 +11,13 @@ import com.example.krasimiryankov.libraryapp.model.Student
 
 @Database(
         version = 1,
-        entities = [BookEntry::class, Student::class, Borrow::class],
+        entities = [BookEntry::class, Student::class],
         exportSchema = false
 )
 abstract class LibraryDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
+    abstract fun studentDao(): StudentDao
 
     companion object {
         @Volatile

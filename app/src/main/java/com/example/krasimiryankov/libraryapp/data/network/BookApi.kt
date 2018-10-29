@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 fun getBooksFromApi(
@@ -35,8 +36,8 @@ fun getBooksFromApi(
 }
 
 interface BookApi {
-    @GET("search")
-    fun getBooks(@Query("query") query: String,
+    @GET("search/{title}")
+    fun getBooks(@Path("title") query: String,
                  @Query("page") page: Int): Call<BooksResponse>
 
     companion object {
