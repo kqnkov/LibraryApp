@@ -16,7 +16,7 @@ class LibraryRepository(
         val dataSourceFactory = cache.getAllBooks()
         val boundaryCallback = BookBoundaryCallback(query, cache, service)
         val errors = boundaryCallback.errors
-        val data = LivePagedListBuilder(dataSourceFactory, 20).setBoundaryCallback(boundaryCallback).build()
+        val data = LivePagedListBuilder(dataSourceFactory, BOOKS_ITEMS_PER_PAGE).setBoundaryCallback(boundaryCallback).build()
 
         return BooksResult(data, errors)
     }
@@ -27,5 +27,9 @@ class LibraryRepository(
 
     fun getStudents(): LiveData<List<Student>> {
         return cache.getAllStudents()
+    }
+
+    companion object {
+        const val BOOKS_ITEMS_PER_PAGE = 20
     }
 }

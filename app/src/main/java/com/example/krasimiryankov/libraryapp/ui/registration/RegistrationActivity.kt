@@ -1,11 +1,11 @@
 package com.example.krasimiryankov.libraryapp.ui.registration
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.text.Editable
+import android.text.TextWatcher
 import com.example.krasimiryankov.libraryapp.Injection
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.databinding.ActivityRegistrationBinding
@@ -20,9 +20,34 @@ class RegistrationActivity : AppCompatActivity() {
         val binding: ActivityRegistrationBinding = DataBindingUtil.setContentView(this, R.layout.activity_registration)
 
         viewModel = ViewModelProviders.of(this, Injection.provideRegisterViewModelFactory(this)).get(RegistrationViewModel::class.java)
-        viewModel.addNewStudent(student = Student(1, "Gosho", "TU"))
-        viewModel.students.observe(this, Observer { _ ->
-            Toast.makeText(this, "Student inserted", Toast.LENGTH_SHORT).show()
+        binding.viewModel = viewModel
+        binding.student = Student()
+
+        binding.etStudentName.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                binding.student?.name = s.toString()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
         })
+
+        binding.etUniversity.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                binding.student?.university = s.toString()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+
     }
 }

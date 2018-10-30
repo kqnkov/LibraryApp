@@ -3,4 +3,5 @@
     <string name="label_btn_new_student">Add new student</string>
     <string name="label_et_student_name">Student name</string>
     <string name="label_btn_register">Register</string>
+    <string name="label_et_university">University</string>
 </resources>
