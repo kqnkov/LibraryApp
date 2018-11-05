@@ -7,9 +7,9 @@ import com.example.krasimiryankov.libraryapp.data.BookConst
 
 @Entity(tableName = BookConst.TABLE_STUDENT)
 data class Student(
-        @PrimaryKey(autoGenerate = true) val id: Long,
+        @PrimaryKey(autoGenerate = true) val id: Int,
         var name: String,
         var university: String
 ) {
-    @Ignore constructor(): this(0, "", "")
+    @Ignore constructor() : this(0, "", "")
 }

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.example.krasimiryankov.libraryapp.databinding.RowStudentBinding
 import com.example.krasimiryankov.libraryapp.model.Student
 
-class StudentAdapter : RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
+class StudentAdapter(val studentClickListener: (Student) -> Unit) : RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
     private var items: List<Student>? = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,13 +20,14 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items?.get(position))
+        holder.bind(items?.get(position), studentClickListener)
     }
 
     inner class ViewHolder(val binding: RowStudentBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Student?) {
+        fun bind(item: Student?, clickListener: (Student) -> Unit) {
             binding.tvStudentName.text = item?.name
             binding.tvStudentUniversity.text = item?.university
+            binding.studentContainer.setOnClickListener { clickListener(item!!) }
         }
     }
 
@@ -35,3 +36,4 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 }
+

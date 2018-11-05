@@ -2,22 +2,26 @@ package com.example.krasimiryankov.libraryapp.ui.registration
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import com.example.krasimiryankov.libraryapp.Injection
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.databinding.ActivityRegistrationBinding
 import com.example.krasimiryankov.libraryapp.model.Student
+import com.example.krasimiryankov.libraryapp.ui.books.BooksActivity
+import kotlinx.android.synthetic.main.activity_registration.*
 
 class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var viewModel: RegistrationViewModel
     private lateinit var binding: ActivityRegistrationBinding
-    private val studentAdapter = StudentAdapter()
+    private val studentAdapter = StudentAdapter { item: Student -> onStudentClick(item) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,11 @@ class RegistrationActivity : AppCompatActivity() {
 
         adapterSetup()
         attachTextWatchers()
+
+        btnLoadBooks.setOnClickListener({
+            val intent = Intent(this, BooksActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun adapterSetup() {
@@ -67,5 +76,9 @@ class RegistrationActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun onStudentClick(student: Student) {
+        Toast.makeText(this, student.university, Toast.LENGTH_SHORT).show()
     }
 }
