@@ -4,4 +4,9 @@
     <string name="label_et_student_name">Student name</string>
     <string name="label_btn_register">Register</string>
     <string name="label_et_university">University</string>
+    <string name="hint_search_student">Search student</string>
+    <string name="label_student_name">Student name:</string>
+    <string name="label_student_university">Student University:</string>
+    <string name="label_student_book_list"><u>Student\'s book list:</u></string>
+    <string name="label_btn_load_books">Go to library</string>
 </resources>

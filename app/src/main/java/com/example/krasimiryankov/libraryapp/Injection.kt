@@ -8,6 +8,7 @@ import com.example.krasimiryankov.libraryapp.data.database.LibraryLocalCache
 import com.example.krasimiryankov.libraryapp.data.network.BookApi
 import com.example.krasimiryankov.libraryapp.ui.books.ViewModelFactory
 import com.example.krasimiryankov.libraryapp.ui.registration.RegisterViewModelFactory
+import com.example.krasimiryankov.libraryapp.ui.students.StudentsViewModelFactory
 
 import java.util.concurrent.Executors
 
@@ -40,5 +41,9 @@ object Injection {
 
     fun provideRegisterViewModelFactory(context: Context): ViewModelProvider.Factory {
         return RegisterViewModelFactory(provideGithubRepository(context))
+    }
+
+    fun provideStudentsViewModelFactory(context: Context): ViewModelProvider.Factory {
+        return StudentsViewModelFactory(provideGithubRepository(context))
     }
 }

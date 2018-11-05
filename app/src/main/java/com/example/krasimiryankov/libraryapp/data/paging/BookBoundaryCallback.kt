@@ -7,6 +7,7 @@ import com.example.krasimiryankov.libraryapp.data.database.LibraryLocalCache
 import com.example.krasimiryankov.libraryapp.data.network.BookApi
 import com.example.krasimiryankov.libraryapp.data.network.getBooksFromApi
 import com.example.krasimiryankov.libraryapp.model.BookEntry
+import java.util.*
 
 class BookBoundaryCallback(
         private val query: String,
@@ -29,6 +30,9 @@ class BookBoundaryCallback(
 
     private fun updateRecentData(query: String) {
         getBooksFromApi(service, query, lastRequestedPage, { books ->
+            for (book: BookEntry in books){
+              book.studentId = (1..5).random()
+            }
             cache.insertBooks(books, {
                 lastRequestedPage++
             })
@@ -36,4 +40,7 @@ class BookBoundaryCallback(
             _errors.postValue(error)
         })
     }
+
+    fun IntRange.random() =
+            Random().nextInt((endInclusive + 1) - start) +  start
 }
