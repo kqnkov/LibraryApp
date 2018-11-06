@@ -15,9 +15,9 @@ interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(books: List<BookEntry>)
 
-    @Query("SELECT * FROM " + BookConst.TABLE_BOOKS)
+    @Query("SELECT * FROM " + BookConst.TABLE_BOOKS + " WHERE studentId IS NULL or studentId = ''")
     fun getAll(): DataSource.Factory<Int, BookEntry>
 
-    @Query("SELECT * FROM " + BookConst.TABLE_BOOKS + " WHERE studentId == :studentId")
+    @Query("SELECT * FROM " + BookConst.TABLE_BOOKS + " WHERE studentId = :studentId")
     fun getStudentBooks(studentId: Int?): LiveData<List<BookEntry>>
 }

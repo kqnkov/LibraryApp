@@ -6,25 +6,32 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.text.Editable
 import android.text.TextWatcher
 import com.example.krasimiryankov.libraryapp.Injection
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.databinding.ActivityStudentsBinding
-import com.example.krasimiryankov.libraryapp.ui.registration.RegistrationActivity
+import com.example.krasimiryankov.libraryapp.ui.books.BooksActivity
 import kotlinx.android.synthetic.main.activity_students.*
 
 class StudentsActivity : AppCompatActivity() {
 
     private lateinit var studentsViewModel: StudentsViewModel
     private val adapter = StudentBooksAdapter()
+    private val noStudentSnackbar: Snackbar by lazy {
+        Snackbar.make(tvStudentName, getString(R.string.message_student_not_found), Snackbar.LENGTH_SHORT)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityStudentsBinding = DataBindingUtil.setContentView(this, R.layout.activity_students)
 
         listBooks.adapter = adapter
+        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        listBooks.addItemDecoration(decoration)
 
         studentsViewModel = ViewModelProviders.of(this, Injection.provideStudentsViewModelFactory(this)).get(StudentsViewModel::class.java)
 
@@ -40,7 +47,11 @@ class StudentsActivity : AppCompatActivity() {
         attachTextWatchers()
 
         binding.btnRegister.setOnClickListener { _ ->
-            loadRegistration()
+            if (!tvStudentName.text.isNullOrEmpty()) {
+                loadUnusedBooks()
+            } else {
+                noStudentSnackbar.show()
+            }
         }
     }
 
@@ -59,8 +70,8 @@ class StudentsActivity : AppCompatActivity() {
         })
     }
 
-    private fun loadRegistration() {
-        val intent = Intent(this, RegistrationActivity::class.java)
+    private fun loadUnusedBooks() {
+        val intent = Intent(this, BooksActivity::class.java)
         startActivity(intent)
     }
 }

@@ -9,4 +9,5 @@
     <string name="label_student_university">Student University:</string>
     <string name="label_student_book_list"><u>Student\'s book list:</u></string>
     <string name="label_btn_load_books">Go to library</string>
+    <string name="message_student_not_found">Student was not found</string>
 </resources>
