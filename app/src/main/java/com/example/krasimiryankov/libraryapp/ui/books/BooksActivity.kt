@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.arch.paging.PagedList
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import com.example.krasimiryankov.libraryapp.Injection
@@ -21,6 +22,9 @@ class BooksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         list = findViewById(R.id.list)
+        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        list.addItemDecoration(decoration)
+
 
         viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this)).get(BooksActivityViewModel::class.java)
         list.adapter = adapter

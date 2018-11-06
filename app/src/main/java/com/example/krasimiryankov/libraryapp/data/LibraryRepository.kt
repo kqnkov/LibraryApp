@@ -38,6 +38,10 @@ class LibraryRepository(
         return cache.getStudentBooks(id)
     }
 
+    fun returnBook(bookEntry: BookEntry) {
+        cache.returnBook(bookEntry)
+    }
+
     companion object {
         const val BOOKS_ITEMS_PER_PAGE = 20
     }

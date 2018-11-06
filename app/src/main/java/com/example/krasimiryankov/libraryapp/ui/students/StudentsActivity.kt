@@ -14,13 +14,14 @@ import android.text.TextWatcher
 import com.example.krasimiryankov.libraryapp.Injection
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.databinding.ActivityStudentsBinding
+import com.example.krasimiryankov.libraryapp.model.BookEntry
 import com.example.krasimiryankov.libraryapp.ui.books.BooksActivity
 import kotlinx.android.synthetic.main.activity_students.*
 
 class StudentsActivity : AppCompatActivity() {
 
     private lateinit var studentsViewModel: StudentsViewModel
-    private val adapter = StudentBooksAdapter()
+    private val adapter = StudentBooksAdapter { item: BookEntry -> onBookClicked(item) }
     private val noStudentSnackbar: Snackbar by lazy {
         Snackbar.make(tvStudentName, getString(R.string.message_student_not_found), Snackbar.LENGTH_SHORT)
     }
@@ -73,5 +74,9 @@ class StudentsActivity : AppCompatActivity() {
     private fun loadUnusedBooks() {
         val intent = Intent(this, BooksActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun onBookClicked(book: BookEntry) {
+        studentsViewModel.retrutnBook(book)
     }
 }

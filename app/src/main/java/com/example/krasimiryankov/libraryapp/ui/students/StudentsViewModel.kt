@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import com.example.krasimiryankov.libraryapp.data.LibraryRepository
+import com.example.krasimiryankov.libraryapp.model.BookEntry
 
 class StudentsViewModel(private val repository: LibraryRepository) : ViewModel() {
 
@@ -13,6 +14,11 @@ class StudentsViewModel(private val repository: LibraryRepository) : ViewModel()
 
     val booksResult = Transformations.switchMap(studentDataResult) {
         repository.getStudentBooks(it?.id)
+    }
+
+    fun retrutnBook(book: BookEntry) {
+        book.studentId = null
+        repository.returnBook(book)
     }
 
     fun searchStudent(string: String) {

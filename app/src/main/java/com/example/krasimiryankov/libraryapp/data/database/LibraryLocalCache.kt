@@ -32,11 +32,17 @@ class LibraryLocalCache(
         return studentDao.getAllStudents()
     }
 
-    fun getStudentByName(name: String): LiveData<Student>{
+    fun getStudentByName(name: String): LiveData<Student> {
         return studentDao.getStudentByName(name)
     }
 
-    fun getStudentBooks(studentId: Int?): LiveData<List<BookEntry>>{
+    fun getStudentBooks(studentId: Int?): LiveData<List<BookEntry>> {
         return bookDao.getStudentBooks(studentId)
+    }
+
+    fun returnBook(bookEntry: BookEntry) {
+        ioExecutor.execute {
+            bookDao.returnBook(bookEntry)
+        }
     }
 }

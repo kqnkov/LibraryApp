@@ -28,6 +28,17 @@
             tools:text="$30.50" />
 
         <ImageView
+            android:id="@+id/btnReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+
+            android:src="@drawable/ic_sharp_transit_enterexit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/iv_book_thumbnail"
             android:layout_width="60dp"
             android:layout_height="60dp"
