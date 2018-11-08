@@ -27,7 +27,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbarRegistration)
         toolbarRegistration.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back)
-        toolbarRegistration.setNavigationOnClickListener { v -> finish() }
+        toolbarRegistration.setNavigationOnClickListener { _ -> finish() }
 
         viewModel = ViewModelProviders.of(this, Injection.provideRegisterViewModelFactory(this)).get(RegistrationViewModel::class.java)
         binding.viewModel = viewModel

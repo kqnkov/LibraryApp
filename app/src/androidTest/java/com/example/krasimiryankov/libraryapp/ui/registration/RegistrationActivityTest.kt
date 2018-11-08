@@ -1,6 +1,8 @@
 package com.example.krasimiryankov.libraryapp.ui.registration
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.Espresso.pressBack
+import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions.scrollTo
@@ -16,13 +18,13 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class RegistrationActivityTest{
+class RegistrationActivityTest {
 
     @get:Rule
     val activityRule = ActivityTestRule(RegistrationActivity::class.java)
 
     @Test
-    fun check_addNewStudent_Success(){
+    fun check_addNewStudent_Success() {
         val studentName = "Name4"
         val university = "My University"
 
@@ -43,9 +45,15 @@ class RegistrationActivityTest{
         onView(withId(R.id.listStudents)).check(matches(hasDescendant(withText(studentName))))
     }
 
+
     @Test
-    fun check_addNewStudent_displayStudentInfo_Success(){
-        onView(withId(R.id.toolbarRegistration)).perform(pressBack())
+    fun check_addNewStudent_displayStudentInfo_Success() {
+        onView(withId(R.id.searchStudent)).check(matches(isDisplayed()))
+        onView(withId(R.id.addStudent)).perform(ViewActions.click())
+
+        onView(withId(R.id.et_university)).perform(closeSoftKeyboard())
+        pressBack()
         onView(withId(R.id.searchStudent)).check(matches(isDisplayed()))
     }
+
 }
