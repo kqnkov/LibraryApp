@@ -17,6 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
         <EditText
             android:id="@+id/et_student_name"
             android:layout_width="match_parent"
@@ -27,7 +39,8 @@
             android:hint="@string/label_et_student_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarRegistration"/>
 
         <EditText
             android:id="@+id/et_university"
@@ -56,22 +69,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_university" />
 
-        <Button
-            android:id="@+id/btnLoadBooks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/label_btn_load_books"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintStart_toEndOf="@+id/btn_register"
-            app:layout_constraintTop_toBottomOf="@+id/et_university" />
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/list"
+            android:id="@+id/listStudents"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="16dp"

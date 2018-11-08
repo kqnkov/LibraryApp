@@ -2,7 +2,6 @@ package com.example.krasimiryankov.libraryapp.ui.registration
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -14,7 +13,6 @@ import com.example.krasimiryankov.libraryapp.Injection
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.databinding.ActivityRegistrationBinding
 import com.example.krasimiryankov.libraryapp.model.Student
-import com.example.krasimiryankov.libraryapp.ui.books.BooksActivity
 import kotlinx.android.synthetic.main.activity_registration.*
 
 class RegistrationActivity : AppCompatActivity() {
@@ -26,23 +24,23 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_registration)
+
+        setSupportActionBar(toolbarRegistration)
+        toolbarRegistration.navigationIcon = getDrawable(R.drawable.ic_baseline_arrow_back)
+        toolbarRegistration.setNavigationOnClickListener { v -> finish() }
+
         viewModel = ViewModelProviders.of(this, Injection.provideRegisterViewModelFactory(this)).get(RegistrationViewModel::class.java)
         binding.viewModel = viewModel
         binding.student = Student()
 
         adapterSetup()
         attachTextWatchers()
-
-        btnLoadBooks.setOnClickListener({
-            val intent = Intent(this, BooksActivity::class.java)
-            startActivity(intent)
-        })
     }
 
     private fun adapterSetup() {
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        binding.list.addItemDecoration(itemDecoration)
-        binding.list.adapter = studentAdapter
+        binding.listStudents.addItemDecoration(itemDecoration)
+        binding.listStudents.adapter = studentAdapter
 
         viewModel.students.observe(this, Observer { list ->
             studentAdapter.updateList(list)
