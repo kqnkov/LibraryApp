@@ -38,8 +38,8 @@ class LibraryRepository(
         return cache.getStudentBooks(id)
     }
 
-    fun returnBook(bookEntry: BookEntry) {
-        cache.returnBook(bookEntry)
+    fun updateBook(bookEntry: BookEntry) {
+        cache.updateBook(bookEntry)
     }
 
     companion object {

@@ -9,20 +9,23 @@ import android.widget.TextView
 import com.example.krasimiryankov.libraryapp.R
 import com.example.krasimiryankov.libraryapp.model.BookEntry
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.row_book.view.*
 
 class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    private val itemContainer = view.itemContainer
     private val title: TextView = view.findViewById(R.id.tv_book_title)
     private val price: TextView = view.findViewById(R.id.tv_book_price)
     private val image: ImageView = view.findViewById(R.id.iv_book_thumbnail)
 
-    fun bind(book: BookEntry?) {
+    fun bind(book: BookEntry?, itemCLickListener: (BookEntry) -> Unit) {
         if (book != null) {
-            displayBookData(book)
+            displayBookData(book, itemCLickListener)
         }
     }
 
-    fun displayBookData(book: BookEntry?) {
+    fun displayBookData(book: BookEntry?, itemCLickListener: (BookEntry) -> Unit) {
+        itemContainer.setOnClickListener { itemCLickListener(book!!) }
         title.text = book?.title.toString()
         price.text = book?.price.toString()
         Picasso.get().load(book?.image).into(image)

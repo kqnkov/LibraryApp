@@ -2,16 +2,23 @@ package com.example.krasimiryankov.libraryapp.ui.students
 
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.action.ViewActions.typeText
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
+import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.EditText
 import com.example.krasimiryankov.libraryapp.R
+import org.hamcrest.Description
+import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
@@ -118,5 +125,74 @@ class StudentsActivityTest {
         onView(withId(R.id.tvUserNotFound)).check(matches(not(isDisplayed())))
 
         onView(withId(R.id.listBooks)).check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun check_findStudent_addingBooksToStudent_Success() {
+        val studentName = "Name4"
+
+        //Initial checks in StudentsActivity
+        onView(withId(R.id.searchStudent)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnAddBook)).check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.searchStudent)).perform(typeText(studentName), closeSoftKeyboard())
+        onView(withId(R.id.searchStudent)).check(matches(TextLength3SymbolsMatcher.withCustomMatch()))
+        onView(withId(R.id.tvStudentName)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvStudentName)).check(matches(withText(studentName)))
+
+        onView(withId(R.id.btnAddBook)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.btnAddBook)).perform(click())
+
+        //Initial checks in BooksActivity
+        onView(withId(R.id.listBooks)).check(matches(isDisplayed()))
+        onView(withId(R.id.listBooks)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        Espresso.pressBack()
+
+        //Return to StudentsActivity and check the view states and is newly added book is related with the student
+        onView(withId(R.id.tvStudentName)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvStudentUniversity)).check(matches(isDisplayed()))
+        onView(withId(R.id.addStudent)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.tvStudentName)).check(matches(withText(studentName)))
+        onView(withId(R.id.listBooks)).perform(RecyclerViewScrollToLastAction())
+        //onView(withId(R.id.listStudents)).check(matches(hasDescendant(withText(""))))
+
+        onView(withId(R.id.tvUserNotFound)).check(matches(not(isDisplayed())))
+//        onView(withId(R.id.listBooks)).perform(RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(hasDescendant(withText(studentName))))
+//        onView(withId(R.id.listBooks)).check(matches(hasDescendant(withText(studentName))))
+    }
+
+    class TextLength3SymbolsMatcher {
+        companion object {
+            fun withCustomMatch(): Matcher<View> {
+                return object : BoundedMatcher<View, EditText>(EditText::class.java) {
+
+                    override fun describeTo(description: Description?) {
+                        description?.appendText("Checks if the edit text field has more than 3 symbols typed.")
+                    }
+
+                    override fun matchesSafely(item: EditText?): Boolean {
+                        return item?.text.toString().length > 3
+                    }
+                }
+            }
+        }
+    }
+
+    class RecyclerViewScrollToLastAction : ViewAction {
+        override fun getDescription(): String {
+            return "Scroll the given RecyclerView to it's last position"
+        }
+
+        override fun getConstraints(): Matcher<View> {
+            return isDisplayed()
+        }
+
+        override fun perform(uiController: UiController?, view: View?) {
+            val recyclerView = view as RecyclerView
+            recyclerView.smoothScrollToPosition(recyclerView.adapter.itemCount)
+        }
+
     }
 }

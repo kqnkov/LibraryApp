@@ -40,9 +40,9 @@ class LibraryLocalCache(
         return bookDao.getStudentBooks(studentId)
     }
 
-    fun returnBook(bookEntry: BookEntry) {
+    fun updateBook(bookEntry: BookEntry) {
         ioExecutor.execute {
-            bookDao.returnBook(bookEntry)
+            bookDao.updateBook(bookEntry)
         }
     }
 }

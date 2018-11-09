@@ -19,5 +19,5 @@ interface BookDao {
     fun getStudentBooks(studentId: Int?): LiveData<List<BookEntry>>
 
     @Update
-    fun returnBook(bookEntry: BookEntry)
+    fun updateBook(bookEntry: BookEntry)
 }

@@ -51,7 +51,7 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_baseline_search"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
             android:id="@+id/tvStudentNameLabel"
@@ -60,8 +60,8 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="8dp"
             android:text="@string/label_student_name"
-            android:visibility="gone"
             android:textSize="19sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout" />
 
@@ -99,8 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
             android:text="@string/label_student_university"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStudentNameLabel" />
 
@@ -110,8 +110,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
             android:textStyle="italic|bold"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/tvStudentUniversityLabel"
             app:layout_constraintTop_toBottomOf="@+id/tvStudentName" />
 
@@ -121,10 +121,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:visibility="gone"
             android:text="@string/label_student_book_list"
             android:textColor="@android:color/black"
             android:textSize="17sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStudentUniversityLabel" />
 
@@ -147,19 +147,20 @@
             tools:ignore="UnusedAttribute" />
 
         <!--<android.support.constraint.Group-->
-            <!--android:id="@+id/groupUserInfo"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:visibility="gone"-->
-            <!--app:constraint_referenced_ids="tvStudentNameLabel, tvStudentName,-->
-            <!--tvStudentUniversityLabel, tvStudentUniversity, tvBookListLabel" />-->
+        <!--android:id="@+id/groupUserInfo"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:visibility="gone"-->
+        <!--app:constraint_referenced_ids="tvStudentNameLabel, tvStudentName,-->
+        <!--tvStudentUniversityLabel, tvStudentUniversity, tvBookListLabel" />-->
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_register"
+            android:id="@+id/btnAddBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/ic_baseline_add"
+            android:visibility="gone"
             app:elevation="6dp"
             app:layout_anchor="@id/listBooks"
             app:layout_anchorGravity="bottom|right|end"

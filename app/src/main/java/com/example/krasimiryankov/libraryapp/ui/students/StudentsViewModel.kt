@@ -16,9 +16,9 @@ class StudentsViewModel(private val repository: LibraryRepository) : ViewModel()
         repository.getStudentBooks(it?.id)
     }
 
-    fun retrutnBook(book: BookEntry) {
+    fun returnBook(book: BookEntry) {
         book.studentId = null
-        repository.returnBook(book)
+        repository.updateBook(book)
     }
 
     fun searchStudent(string: String) {

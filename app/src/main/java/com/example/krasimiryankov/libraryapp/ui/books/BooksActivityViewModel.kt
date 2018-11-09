@@ -21,4 +21,9 @@ class BooksActivityViewModel(private val repository: LibraryRepository) : ViewMo
         booksLiveData.postValue(query)
     }
 
+    fun addBookToStudent(studentId: Int, book: BookEntry) {
+        book.studentId = studentId
+        repository.updateBook(book)
+    }
+
 }
