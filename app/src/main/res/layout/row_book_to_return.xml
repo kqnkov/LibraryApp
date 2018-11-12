@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/itemContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -27,6 +26,17 @@
             app:layout_constraintStart_toEndOf="@+id/iv_book_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/tv_book_title"
             tools:text="$30.50" />
+
+        <ImageView
+            android:id="@+id/btnReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+
+            android:src="@drawable/ic_sharp_transit_enterexit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_book_thumbnail"

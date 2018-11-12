@@ -30,9 +30,6 @@ class BookBoundaryCallback(
 
     private fun updateRecentData(query: String) {
         getBooksFromApi(service, query, lastRequestedPage, { books ->
-            for (book: BookEntry in books){
-              book.studentId = (1..5).random()
-            }
             cache.insertBooks(books, {
                 lastRequestedPage++
             })
@@ -42,5 +39,5 @@ class BookBoundaryCallback(
     }
 
     fun IntRange.random() =
-            Random().nextInt((endInclusive + 1) - start) +  start
+            Random().nextInt((endInclusive + 1) - start) + start
 }

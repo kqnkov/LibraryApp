@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.example.krasimiryankov.libraryapp.model.BookEntry
 
 
-class BookAdapter : PagedListAdapter<BookEntry, RecyclerView.ViewHolder>(BOOK_COMPARATOR){
+class BookAdapter(private val clickListener: (BookEntry) -> Unit) : PagedListAdapter<BookEntry, RecyclerView.ViewHolder>(BOOK_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return BookViewHolder.create(parent)
@@ -16,9 +16,10 @@ class BookAdapter : PagedListAdapter<BookEntry, RecyclerView.ViewHolder>(BOOK_CO
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val repoItem = getItem(position)
         if (repoItem != null) {
-            (holder as BookViewHolder).bind(repoItem)
+            (holder as BookViewHolder).bind(repoItem, clickListener)
         }
     }
+
     companion object {
         private val BOOK_COMPARATOR = object : DiffUtil.ItemCallback<BookEntry>() {
             override fun areItemsTheSame(oldItem: BookEntry, newItem: BookEntry): Boolean =
